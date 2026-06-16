@@ -1,1 +1,142 @@
-/* Caso queira utilizar framework como Bootstrap para estilização, pode utilizar. Basta ignoar esse arquivo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #1f2933;
+}
+
+.topo {
+  background-color: #14532d;
+  color: #ffffff;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.topo h1 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+.subtitulo {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cartao {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.cartao h2 {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  color: #14532d;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.campo label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3e4c59;
+}
+
+.campo input {
+  padding: 10px 12px;
+  border: 1px solid #cbd2d9;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: #14532d;
+}
+
+#btn-cadastrar {
+  width: 100%;
+  padding: 12px;
+  background-color: #14532d;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#btn-cadastrar:hover {
+  background-color: #0f3d22;
+}
+
+#btn-cadastrar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mensagem {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  min-height: 18px;
+}
+
+.mensagem.sucesso {
+  color: #1a7f37;
+}
+
+.mensagem.erro {
+  color: #c0152f;
+}
+
+.lista-materiais {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-material {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background-color: #f4f6f8;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.item-nome {
+  font-weight: 600;
+}
+
+.item-quantidade {
+  color: #3e4c59;
+}
+
+.lista-vazia {
+  text-align: center;
+  color: #7b8794;
+  font-size: 0.85rem;
+  padding: 8px 0;
+}
