@@ -6,6 +6,8 @@ const btnCadastrar = document.getElementById("btn-cadastrar");
 const listaMateriais = document.getElementById("lista-materiais");
 const mensagemStatus = document.getElementById("mensagem-status");
 const inputRetirada = document.getElementById("input-retirada");
+const inputBusca = document.getElementById("input-busca");
+const totalItens = document.getElementById("total-itens");
 
 let materiaisCache = [];
 
@@ -37,6 +39,32 @@ function validarRetirada(estoqueAtual, quantidadeRetirada) {
   return true;
 }
 
+function renderizarMateriais(materiais) {
+  listaMateriais.innerHTML = "";
+
+  if (!materiais || materiais.length === 0) {
+    listaMateriais.innerHTML =
+      '<li class="lista-vazia">Nenhum material encontrado.</li>';
+    return;
+  }
+
+  materiais.forEach((material) => {
+    const item = document.createElement("li");
+    const critico = material.quantidade < 10;
+    item.className = "item-material" + (critico ? " estoque-critico" : "");
+    item.innerHTML =
+      '<div class="item-info">' +
+        '<span class="item-nome">' + material.nome + "</span>" +
+        '<span class="item-quantidade">Qtd: ' + material.quantidade + (critico ? ' ⚠️ Estoque baixo' : '') + "</span>" +
+      "</div>" +
+      '<div class="item-acoes">' +
+        '<button type="button" class="btn-baixar" data-id="' + material.id + '">Baixar</button>' +
+        '<button type="button" class="btn-excluir" data-id="' + material.id + '">Excluir</button>' +
+      "</div>";
+    listaMateriais.appendChild(item);
+  });
+}
+
 async function carregarMateriais() {
   try {
     const resposta = await fetch(API_URL);
@@ -48,28 +76,18 @@ async function carregarMateriais() {
     const materiais = await resposta.json();
     materiaisCache = materiais;
 
-    listaMateriais.innerHTML = "";
-
-    if (!materiais || materiais.length === 0) {
-      listaMateriais.innerHTML =
-        '<li class="lista-vazia">Nenhum material cadastrado ainda.</li>';
-      return;
+    // Sprint 3: atualiza o dashboard com o total de itens
+    if (totalItens) {
+      totalItens.textContent = materiais.length;
     }
 
-    materiais.forEach((material) => {
-      const item = document.createElement("li");
-      item.className = "item-material";
-      item.innerHTML =
-        '<div class="item-info">' +
-          '<span class="item-nome">' + material.nome + "</span>" +
-          '<span class="item-quantidade">Qtd: ' + material.quantidade + "</span>" +
-        "</div>" +
-        '<div class="item-acoes">' +
-          '<button type="button" class="btn-baixar" data-id="' + material.id + '">Baixar</button>' +
-          '<button type="button" class="btn-excluir" data-id="' + material.id + '">Excluir</button>' +
-        "</div>";
-      listaMateriais.appendChild(item);
-    });
+    // Sprint 3: aplica filtro de busca se houver texto
+    const filtro = inputBusca ? inputBusca.value.trim().toLowerCase() : "";
+    const materiaisFiltrados = filtro
+      ? materiais.filter((m) => m.nome.toLowerCase().includes(filtro))
+      : materiais;
+
+    renderizarMateriais(materiaisFiltrados);
   } catch (erro) {
     console.error(erro);
     listaMateriais.innerHTML =
@@ -197,5 +215,16 @@ listaMateriais.addEventListener("click", function (evento) {
     excluirMaterial(botaoExcluir.dataset.id);
   }
 });
+
+// Sprint 3: filtra a lista conforme o usuario digita na busca
+if (inputBusca) {
+  inputBusca.addEventListener("input", function () {
+    const filtro = inputBusca.value.trim().toLowerCase();
+    const materiaisFiltrados = filtro
+      ? materiaisCache.filter((m) => m.nome.toLowerCase().includes(filtro))
+      : materiaisCache;
+    renderizarMateriais(materiaisFiltrados);
+  });
+}
 
 carregarMateriais();
