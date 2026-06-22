@@ -61,6 +61,31 @@
       <p id="mensagem-status" class="mensagem"></p>
     </section>
 
+    <section class="cartao">
+      <h2>Retirar Material do Estoque</h2>
+
+      <div class="campo">
+        <label for="input-retirada">Quantidade a retirar</label>
+        <input
+          type="number"
+          id="input-retirada"
+          min="1"
+          placeholder="Ex: 5"
+        />
+      </div>
+
+      <p class="dica">
+        Informe a quantidade acima e clique em "Baixar" no item desejado na lista abaixo.
+      </p>
+    </section>
+
+    <section class="cartao">
+      <h2>Materiais em Estoque</h2>
+      <ul id="lista-materiais" class="lista-materiais">
+        <li class="lista-vazia">Carregando materiais...</li>
+      </ul>
+    </section>
+
   </main>
 
   <script src="main.js"></script>

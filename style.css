@@ -124,6 +124,14 @@ body {
   background-color: #f4f6f8;
   border-radius: 6px;
   font-size: 0.9rem;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .item-nome {
@@ -132,6 +140,43 @@ body {
 
 .item-quantidade {
   color: #3e4c59;
+}
+
+.item-acoes {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-baixar,
+.btn-excluir {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.btn-baixar {
+  background-color: #b45309;
+}
+
+.btn-baixar:hover {
+  background-color: #92400e;
+}
+
+.btn-excluir {
+  background-color: #c0152f;
+}
+
+.btn-excluir:hover {
+  background-color: #99101f;
+}
+
+.dica {
+  font-size: 0.8rem;
+  color: #7b8794;
 }
 
 .lista-vazia {
