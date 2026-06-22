@@ -185,3 +185,25 @@ body {
   font-size: 0.85rem;
   padding: 8px 0;
 }
+
+/* Sprint 3: destaque para estoque crítico */
+.estoque-critico {
+  border-left: 4px solid #c0152f;
+  background-color: #fff5f5;
+}
+
+.estoque-critico .item-quantidade {
+  color: #c0152f;
+  font-weight: 600;
+}
+
+/* Sprint 3: dashboard */
+.dashboard-info {
+  font-size: 0.95rem;
+  color: #3e4c59;
+}
+
+.dashboard-info strong {
+  color: #14532d;
+  font-size: 1.2rem;
+}
